@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as apiClient from "../api-client";
 import {BsBuilding, BsMap} from "react-icons/bs";
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi";
-import { HotelType } from "../../../backend/src/models/hotel";
+import { HotelType } from "../../../backend/src/shared/types";
 
 const MyHotels = () => {
     const {data:hotelData} = useQuery("fetchMyHotels", apiClient.fetchMyHotels, {
