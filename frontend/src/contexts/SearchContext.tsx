@@ -22,7 +22,7 @@ type SearchContext = {
     children: React.ReactNode;
   }
   export const SearchContextProvider = ({children}: SearchContextProviderProps) => {
-    const [destination, setDestination] = useState<string>("Everywhere");
+    const [destination, setDestination] = useState<string>("");
     const [checkIn, setCheckIn] = useState<Date>(new Date());
     const [checkOut, setCheckOut] = useState<Date>(new Date());
     const [adultCount, setAdultCount] = useState<number>(1);
