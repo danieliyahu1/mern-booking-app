@@ -11,8 +11,8 @@ const EditHotel = () => {
 
     const { hotelId } = useParams<{ hotelId: string }>();
     const { data: hotel } = useQuery(
-        ['fetchHotelById', hotelId],
-        () => apiClient.fetchHotelById(hotelId || ''),
+        ['fetchMyHotelById', hotelId],
+        () => apiClient.fetchMyHotelById(hotelId || ''),
         {
             enabled: !!hotelId, // Only fetch if ID exists
         }
