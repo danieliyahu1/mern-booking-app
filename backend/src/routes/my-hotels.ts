@@ -4,7 +4,7 @@ import cloudinary from "cloudinary";
 import Hotel from "../models/hotel";
 import { HotelType } from "../shared/types";
 import verifyToken from "../middleware/auth";
-import {body} from "express-validator";
+import { body } from "express-validator";
 
 const router = express.Router();
 
@@ -15,6 +15,7 @@ const upload = multer({
         fileSize: 5 * 1024 * 1024
     }
 });
+
 router.post("/", verifyToken, [body("name").notEmpty().withMessage("Name is required"),
     body("city").notEmpty().withMessage("City is required"),
     body("country").notEmpty().withMessage("country is required"),
