@@ -3,6 +3,9 @@
 ## About the Project
 This is a full-stack booking application built using the MERN stack (MongoDB, Express, React, Node.js). The app allows users to register, log in, add and manage hotels, and upload hotel images to the cloud. The goal of the project is to create a functional hotel management system where users can create hotel listings and view details about hotels.
 
+## Demo
+https://mern-booking-app-9acg.onrender.com
+
 ## Features
 - **User Authentication:** Users can register, log in, and log out.
 - **Hotel Management:** Users can add, edit, and delete hotel listings.

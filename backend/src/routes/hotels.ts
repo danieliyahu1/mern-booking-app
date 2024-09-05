@@ -51,8 +51,7 @@ router.get("/search", async (req: Request, res: Response)=> {
     }
 });
 
-router.get("/:id", 
-    [param("id").notEmpty().withMessage("Hotel Id is required")],
+router.get("/:id", [param("id").notEmpty().withMessage("Hotel Id is required")],
      async(req: Request, res: Response) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
@@ -68,7 +67,7 @@ router.get("/:id",
             console.log(error);
             res.status(500).json({message: "Error fetching hotel"})
         }
-     });
+});
 
 router.post("/:hotelId/bookings/payment-intent", verifyToken, async(req:Request, res:Response) => {
   const {numberOfNights} = req.body;
@@ -211,6 +210,6 @@ const constructSearchQuery = (queryParams: any) => {
     }
   
     return constructedQuery;
-  };
+};
 
 export default router;
