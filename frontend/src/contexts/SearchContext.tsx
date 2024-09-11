@@ -28,7 +28,13 @@ type SearchContext = {
     const [checkIn, setCheckIn] = useState<Date>(() => new Date(sessionStorage.getItem('checkIn') || new Date().toISOString()));
 
     const [checkOut, setCheckOut] = useState<Date>(() =>
-      new Date(sessionStorage.getItem('checkOut') || new Date().toISOString())
+      
+      sessionStorage.getItem('checkOut') 
+      ? new Date(sessionStorage.getItem('checkOut')!)
+      : (() => {
+          const initialCheckIn = new Date(sessionStorage.getItem('checkIn') || new Date().toISOString());
+          return new Date(initialCheckIn.setDate(initialCheckIn.getDate() + 1));
+      })()
     );
 
     const [adultCount, setAdultCount] = useState<number>(() =>

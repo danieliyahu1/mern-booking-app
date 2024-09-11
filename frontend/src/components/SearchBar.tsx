@@ -16,6 +16,7 @@ const SearchBar = () => {
     const [adultCount, setAdultCount] = useState<number>(search.adultCount);
     const [childCount, setChildCount] = useState<number>(search.childCount);
 
+
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         search.saveSearchValues(
@@ -25,7 +26,7 @@ const SearchBar = () => {
             adultCount,
             childCount
         );
-        navigate("/search")
+        navigate("/search");
     };
 
     const handleClear = (event: FormEvent) => {
@@ -35,6 +36,7 @@ const SearchBar = () => {
         setCheckOut(search.checkOut);
         setAdultCount(search.adultCount);
         setChildCount(search.childCount);
+        //setError(null);
     }
 
     const minDate = new Date();
@@ -66,7 +68,7 @@ const SearchBar = () => {
                 </label>
             </div>
 
-                <div className="flex bg-white px-2 py-1 gap-2">
+            <div className="flex bg-white px-2 py-1 gap-2">
                 <label className="items-center flex">
                     Children:
                     <input 
@@ -83,7 +85,17 @@ const SearchBar = () => {
             <div>
                 <DatePicker
                     selected={checkIn}
-                    onChange={(date) => setCheckIn(date as Date)}
+                    onChange={(date) => {
+                        setCheckIn(date as Date);
+                        if(date)
+                        {                            
+                            const newCheckOut = new Date(checkIn);
+                            newCheckOut.setDate(date.getDate() + 1);
+                            if (checkOut && date >= checkOut) {
+                                setCheckOut(newCheckOut); // Clear check-out if it becomes invalid
+                            }
+                        }
+                    }}
                     selectsStart
                     startDate={checkIn}
                     endDate={checkOut}
@@ -109,6 +121,7 @@ const SearchBar = () => {
                     wrapperClassName="min-w-full"
                 />
             </div>
+
             <div className="flex gap-1">
                 <button onClick={handleSubmit} className="w-2/3 bg-blue-600 tex-white h-full p-2 font-bold text-xl hover:bg-blue-500">
                     Search
